@@ -72,8 +72,8 @@
     ]
   },
   "peerDependencies": {
-    "tslib": ">=1.9.0",
-    "axios": ">=0.18.0"
+    "axios": ">=0.18.0",
+    "tslib": ">=1.9.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -83,11 +83,14 @@
     "@types/uglifyjs-webpack-plugin": "1.1.0",
     "@types/webpack": "4.4.6",
     "awesome-typescript-loader": "5.2.0",
+    "axios": "0.18.0",
     "commitizen": "2.10.1",
+    "core-js": "2.5.7",
     "cross-var": "1.1.0",
     "cz-conventional-changelog": "2.1.0",
     "gzip-size-cli": "3.0.0",
     "husky": "1.0.0-rc.8",
+    "injection-js": "2.2.1",
     "jest": "23.4.1",
     "jest-watch-typeahead": "0.2.0",
     "lint-staged": "7.2.0",
