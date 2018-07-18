@@ -23,40 +23,40 @@ yarn add axios tslib
 ### With Injection-JS:
 
 ```ts
-import {Injectable, ReflectiveInjector} from 'injection-js'
-import {HttpClient} from '@martin_hotell/axios-http'
+import { Injectable, ReflectiveInjector } from 'injection-js'
+import { HttpClient } from '@martin_hotell/axios-http'
 
 @Injectable()
 class UserService {
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
-  getUsers(){
+  getUsers() {
     return this.http.get<User[]>('/api/users')
   }
 }
 
-const injector = ReflectiveInjector.resolveAndCreate([HttpClient,UserService])
+const injector = ReflectiveInjector.resolveAndCreate([HttpClient, UserService])
 ```
 
 ### With Angular:
 
 ```ts
-import {Module} from '@angular/core'
-import {HttpClient} from '@martin_hotell/axios-http'
+import { Module } from '@angular/core'
+import { HttpClient } from '@martin_hotell/axios-http'
 
 @Injectable({
-  provideIn: 'root'
+  provideIn: 'root',
 })
 class UserService {
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
-  getUsers(){
+  getUsers() {
     return this.http.get<User[]>('/api/users')
   }
 }
 
 @Module({
-  providers: [HttpClient]
+  providers: [HttpClient],
 })
 class AppModule {}
 ```
