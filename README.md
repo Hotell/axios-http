@@ -15,7 +15,7 @@
 yarn add @martin_hotell/axios-http
 
 # install peer dependencies
-yarn add axios tslib
+yarn add axios injection-js tslib
 
 # install Reflect API polyfill
 yarn add core-js
@@ -27,7 +27,7 @@ yarn add core-js
 > You can use:
 >
 > - [reflect-metadata](https://www.npmjs.com/package/reflect-metadata)
-> - [`core-js` (`core-js/es7/reflect`)](https://www.npmjs.com/package/core-js)
+> - [core-js (`core-js/es7/reflect`)](https://www.npmjs.com/package/core-js)
 >
 > Also for TypeScript you will need to enable `experimentalDecorators` and `emitDecoratorMetadata` flags within your `tsconfig.json`
 
