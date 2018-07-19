@@ -37,7 +37,7 @@ yarn add core-js
 
 ```ts
 import { Injectable, ReflectiveInjector } from 'injection-js'
-import { HttpClient } from '@martin_hotell/axios-http'
+import { HttpClientModule, HttpClientModule } from '@martin_hotell/axios-http'
 
 @Injectable()
 class UserService {
@@ -48,14 +48,17 @@ class UserService {
   }
 }
 
-const injector = ReflectiveInjector.resolveAndCreate([HttpClient, UserService])
+const injector = ReflectiveInjector.resolveAndCreate([
+  HttpClientModule.forRoot(),
+  UserService,
+])
 ```
 
 ### With Angular:
 
 ```ts
 import { Module } from '@angular/core'
-import { HttpClient } from '@martin_hotell/axios-http'
+import { HttpClient, HttpClientModule } from '@martin_hotell/axios-http'
 
 @Injectable({
   provideIn: 'root',
@@ -69,9 +72,95 @@ class UserService {
 }
 
 @Module({
-  providers: [HttpClient],
+  providers: [HttpClient, HttpClientModule.forRoot()],
 })
 class AppModule {}
+```
+
+## Guides
+
+### Configuring HttpClient
+
+- when registering providers you can pass optional config to `forRoot(config)`
+
+```ts
+import { Injectable, ReflectiveInjector } from 'injection-js'
+import { HttpClientModule, HttpClientModule } from '@martin_hotell/axios-http'
+
+@Injectable()
+class UserService {
+  /*...*/
+}
+
+const injector = ReflectiveInjector.resolveAndCreate([
+  HttpClientModule.forRoot({
+    baseUrl: 'api/swapi',
+    withCredentials: true,
+  }),
+  UserService,
+])
+```
+
+### Registering Interceptors
+
+`axios-http` implements similar API for registering interceptors like Angular HttpClient, so you can inject any other service to your interceptors. Under the hood it transforms this API to leverage pure `axios` ✌️
+
+To wire-up our interceptor, you need to register provider via `HTTP_INTERCEPTORS` token and set `mutli:true`:
+
+```ts
+import { Injectable, ReflectiveInjector } from 'injection-js'
+import {
+  HttpClientModule,
+  HttpInterceptor,
+  HTTP_INTERCEPTORS,
+  HttpRequest,
+  HttpResponse,
+} from '@martin_hotell/axios-http'
+
+@Injectable()
+class Logger {
+  log(...args: any[]) {}
+  error(...args: any[]) {}
+}
+
+@Injectable()
+export class MyInterceptor implements HttpInterceptor {
+  // we can inject other injectables
+  constructor(private logger: Logger) {}
+
+  interceptRequest(request: HttpRequest) {
+    const modifiedData = request.data.replace(/pizza/gi, '🍕')
+    const modifiedRequest = { ...request, data: modifiedData }
+
+    return modifiedRequest
+  }
+
+  interceptRequestError(error: any) {
+    this.logger.error('whooops!')
+
+    return Promise.reject(error)
+  }
+
+  interceptResponse(response: HttpResponse) {
+    this.logger.log('---> data:', response.data)
+    this.logger.log('---> filter:', response.params.get('filter'))
+
+    return response
+  }
+
+  interceptResponseError(error: any) {
+    this.logger.error('whooops!')
+
+    return Promise.reject(error)
+  }
+}
+
+const injector = ReflectiveInjector.resolveAndCreate([
+  Logger,
+  HttpClientModule.forRoot(),
+  // wire up our interceptor
+  { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },
+])
 ```
 
 ---
