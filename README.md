@@ -37,7 +37,7 @@ yarn add core-js
 
 ```ts
 import { Injectable, ReflectiveInjector } from 'injection-js'
-import { HttpClientModule, HttpClientModule } from '@martin_hotell/axios-http'
+import { HttpClientModule, HttpClient } from '@martin_hotell/axios-http'
 
 @Injectable()
 class UserService {
@@ -58,7 +58,7 @@ const injector = ReflectiveInjector.resolveAndCreate([
 
 ```ts
 import { Module } from '@angular/core'
-import { HttpClient, HttpClientModule } from '@martin_hotell/axios-http'
+import { HttpClientModule, HttpClient } from '@martin_hotell/axios-http'
 
 @Injectable({
   provideIn: 'root',
@@ -76,6 +76,10 @@ class UserService {
 })
 class AppModule {}
 ```
+
+## Examples
+
+Go checkout [examples](./examples) !
 
 ## Guides
 

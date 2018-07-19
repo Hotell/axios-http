@@ -1,0 +1,27 @@
+{
+  "name": "axios-http-example",
+  "version": "1.0.0",
+  "description": "SWAPI people list fetching with pagination via axios-http and injection-js",
+  "main": "index.html",
+  "author": {
+    "name": "Martin Hochel",
+    "email": "hochelmartin@gmail.com"
+  },
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@martin_hotell/axios-http": "0.2.0",
+    "axios": "0.18.0",
+    "core-js": "2.5.7",
+    "injection-js": "2.2.1",
+    "preact": "8.2.9",
+    "tslib": "1.9.3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "1.9.7",
+    "typescript": "2.9.2"
+  },
+  "keywords": []
+}
