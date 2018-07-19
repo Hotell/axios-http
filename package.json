@@ -1,6 +1,6 @@
 {
   "name": "@martin_hotell/axios-http",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Injectable axios wrapper for Angular and injection-js",
   "main": "bundles/axios-http.umd.js",
   "module": "./esm5/index.js",
