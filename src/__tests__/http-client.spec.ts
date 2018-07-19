@@ -1,7 +1,5 @@
 // tslint:disable:no-magic-numbers
 
-import 'core-js/es7/reflect'
-
 import { Injectable, ReflectiveInjector } from 'injection-js'
 
 import { HttpClient } from '../client'
