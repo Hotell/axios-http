@@ -1,33 +1,29 @@
 // tslint:disable-next-line:match-default-export-name
-import axios, {
-  AxiosInstance,
-  AxiosInterceptorManager,
-  AxiosPromise,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from 'axios'
+import axios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios'
 import { Inject, Injectable, Optional } from 'injection-js'
 
 import { defaultConfig, HttpClientConfig } from './config'
+import { HttpInterceptorHandler } from './interceptor'
 import { AxiosClient } from './types'
 
 @Injectable()
 export class HttpClient implements AxiosClient {
-  defaults: AxiosRequestConfig
-  interceptors: {
-    request: AxiosInterceptorManager<AxiosRequestConfig>
-    response: AxiosInterceptorManager<AxiosResponse<any>>
+  get defaults(): AxiosRequestConfig {
+    return this._provider.defaults
+  }
+  get interceptors() {
+    return this._provider.interceptors
   }
 
   private _provider: AxiosInstance
   constructor(
+    private interceptorHandler: HttpInterceptorHandler,
     @Optional()
     @Inject(HttpClientConfig)
     config?: HttpClientConfig
   ) {
     this._provider = axios.create({ ...defaultConfig, ...config })
-    this.interceptors = this._provider.interceptors
-    this.defaults = this._provider.defaults
+    this.interceptorHandler.register(this._provider.interceptors)
   }
   request<T = any>(config: AxiosRequestConfig): AxiosPromise<T> {
     return this._provider.request(config)
