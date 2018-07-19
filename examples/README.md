@@ -16,7 +16,7 @@ yarn install
 yarn start
 ```
 
-Or check out the [sandbox](https://codesanbox.io/).
+Or check out the [sandbox](https://codesandbox.io/s/github/Hotell/axios-http/tree/master/examples/swapi-people-app).
 
 This simple app demonstrates various `axios-http` library features like:
 
