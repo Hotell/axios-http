@@ -36,7 +36,7 @@ export const HTTP_INTERCEPTORS = new InjectionToken<HttpInterceptor[]>(
 )
 
 /**
- * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
+ * `HttpInterceptorHandler` which registers an `HttpInterceptor[]` to `HttpClient` instance.
  * @private
  */
 @Injectable()
@@ -77,7 +77,6 @@ export class HttpInterceptorHandler {
   }
 }
 
-@Injectable()
 export class NoopInterceptor implements HttpInterceptor {
   interceptRequest(request: HttpRequest) {
     console.log('request:', request)

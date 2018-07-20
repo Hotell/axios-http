@@ -8,6 +8,10 @@ import {
 } from './interceptor'
 
 export class HttpClientModule {
+  /**
+   * @deprecated use registerHttpClientProviders function instead
+   * @param config
+   */
   static forRoot(config?: HttpClientConfig): Provider[] {
     return [
       { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true },
@@ -16,4 +20,19 @@ export class HttpClientModule {
       HttpClient,
     ]
   }
+}
+
+/**
+ * Register all providers needed for HttpClient within injector
+ * @param config
+ */
+export function registerHttpClientProviders(
+  config?: HttpClientConfig
+): Provider[] {
+  return [
+    { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true },
+    HttpInterceptorHandler,
+    { provide: HttpClientConfig, useValue: config },
+    HttpClient,
+  ]
 }

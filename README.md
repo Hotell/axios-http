@@ -77,11 +77,49 @@ class UserService {
 class AppModule {}
 ```
 
+## API
+
+axios-http is just a injectable wrapper which creates an axios instance, so API is the same as for axios.instance ( except Interceptors )
+
+- HttpClient [methods](https://github.com/axios/axios#instance-methods)
+- HttpClient [request config schema](https://github.com/axios/axios#request-config)
+- HttpClient [response schema ](https://github.com/axios/axios#response-schema)
+
 ## Examples
 
 Go checkout [examples](./examples) !
 
 ## Guides
+
+### Type-checking the response
+
+When you execute `http.get('/api/user/123').then(response=>response.data)`, on Success the response object is typeof `AxiosPromise<any>` with anonymous type of `data` property. It doesn't know what the shape of that object is.
+
+You can tell `HttpClient` the type of the response, to make consuming the output easier and more obvious.
+
+First, define an interface with the correct shape:
+
+```ts
+export interface User {
+  name: string
+  email: string
+}
+```
+
+Then, specify that interface as the `HttpClient.get()` call's generic type parameter in the service:
+
+```ts
+getUser(id:string) {
+  // now returns a Promise<User>
+  return this.http.get<User>(`/api/users/${id}`).then(response => response.data);
+}
+```
+
+Now our `getUser()` returns typed data property as `Promise<User>`, so we can access our data in type-safe way
+
+```ts
+heroService.getUser('123').then({name,email}=>...)
+```
 
 ### Configuring HttpClient
 
