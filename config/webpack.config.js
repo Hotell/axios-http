@@ -25,13 +25,15 @@ const packageName = normalizePackageName(packageJSON.name)
 
 const LIB_NAME = pascalCase(packageName)
 const ROOT = resolve(__dirname, '..')
+const DIST = resolve(ROOT, 'dist')
 const PATHS = {
   entry: resolve(ROOT, 'src/index.ts'),
-  umd: resolve(ROOT, 'bundles'),
-  fesm: resolve(ROOT, 'fesm'),
+  umd: resolve(DIST, 'bundles'),
+  fesm: resolve(DIST, 'fesm'),
 }
+
 /**
- * @type {Pick<Env,'dev'>}
+ * @type {Env}
  * https://webpack.js.org/configuration/configuration-types/#exporting-a-function-to-use-env
  * this is equal to 'webpack --env.dev'
  */
@@ -40,7 +42,16 @@ const DEFAULT_ENV = { dev: true }
 /**
  * @type {WebpackExternals | WebpackExternals[]}
  */
-const EXTERNALS = ['tslib', 'axios', 'injection-js']
+// const EXTERNALS = ['react','react-dom', 'lodash']
+const EXTERNALS = {
+  // react: 'react'
+  // lodash: {
+  //   commonjs: 'lodash',
+  //   commonjs2: 'lodash',
+  //   amd: 'lodash',
+  //   root: '_',
+  // },
+}
 
 /**
  * @type {{[key:string]: WebpackRule}}
