@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+
+# [0.3.0](https://www.github.com/Hotell/axios-http/compare/v0.2.0...v0.3.0) (2018-07-23)
+
+### Bug Fixes
+
+- export forgotten registerHttpClientProviders to make it availabe as public api (#3) ([3da051c](https://www.github.com/Hotell/axios-http/commit/3da051c))
+
+### Features
+
+- **module:** add registerHttpClientProviders for registering providers ([f0c95ea](https://www.github.com/Hotell/axios-http/commit/f0c95ea))
+
 <a name="0.2.0"></a>
 
 # [0.2.0](https://www.github.com/Hotell/axios-http/compare/v0.1.1...v0.2.0) (2018-07-19)
