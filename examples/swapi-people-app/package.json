@@ -17,6 +17,7 @@
     "axios": "0.18.0",
     "core-js": "2.5.7",
     "injection-js": "2.2.1",
+    "papercss": "1.5.1",
     "preact": "8.2.9",
     "tslib": "1.9.3"
   },

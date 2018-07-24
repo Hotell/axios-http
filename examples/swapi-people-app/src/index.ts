@@ -1,3 +1,5 @@
+import 'papercss/dist/paper.css'
+
 import { h, render } from 'preact'
 import { App } from './app'
 

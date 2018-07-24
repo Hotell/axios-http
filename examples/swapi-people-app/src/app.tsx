@@ -38,30 +38,36 @@ export class App extends Component<{}, State> {
     const { users, next, previous, loading, error } = this.state
 
     return (
-      <div>
-        <h1>axios-http</h1>
-        <hr />
+      <div class="container">
+        <h1>
+          axios-http <small>demo</small>
+        </h1>
         {error ? (
           <div style={{ color: 'red' }}>
             An Error ocurred!
             <pre>{error}</pre>
           </div>
         ) : null}
-        <div style={{ height: '200px' }}>
-          {loading ? 'Loading...' : <UserList users={users!} />}
+        <div class="card">
+          <div class="card-body" style={{ minHeight: '200px' }}>
+            <h4 class="card-title">Star Wars characters index</h4>
+            <p class="card-text">
+              {loading ? 'Loading...' : <UserList users={users!} />}
+            </p>
+          </div>
+          <div class="row flex-spaces flex-middle" style={{ width: '100%' }}>
+            <button
+              disabled={!previous || loading}
+              onClick={() => this.getPage(previous)}
+            >
+              previous
+            </button>
+            <div>page: {this.getPageNumber(next) - 1}</div>
+            <button disabled={loading} onClick={() => this.getPage(next)}>
+              next
+            </button>
+          </div>
         </div>
-        <div>
-          <button
-            disabled={!previous || loading}
-            onClick={() => this.getPage(previous)}
-          >
-            previous
-          </button>
-          <button disabled={loading} onClick={() => this.getPage(next)}>
-            next
-          </button>
-        </div>
-        <div>page: {this.getPageNumber(next) - 1}</div>
       </div>
     )
   }
