@@ -1,6 +1,9 @@
 // tslint:disable:jsx-no-lambda
 
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@martin_hotell/axios-http'
+import {
+  HTTP_INTERCEPTORS,
+  registerHttpClientProviders,
+} from '@martin_hotell/axios-http'
 import { ReflectiveInjector } from 'injection-js'
 import { Component, FunctionalComponent as SFC, h } from 'preact'
 
@@ -11,7 +14,7 @@ import { User, UserService } from './user.service'
 const injector = ReflectiveInjector.resolveAndCreate([
   Logger,
   // register providers and configure
-  HttpClientModule.forRoot({ baseURL: 'https://swapi.co/api/' }),
+  registerHttpClientProviders({ baseURL: 'https://swapi.co/api/' }),
   // wire up our interceptor
   { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },
   UserService,

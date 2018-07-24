@@ -1,5 +1,3 @@
-import 'core-js/es7/reflect'
-
 import { h, render } from 'preact'
 import { App } from './app'
 

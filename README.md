@@ -18,16 +18,14 @@ yarn add @martin_hotell/axios-http
 yarn add axios injection-js tslib
 
 # install Reflect API polyfill
-yarn add core-js
+yarn add @abraham/reflection
 ```
 
 > **Note:**
 >
 > You need a polyfill for the [Reflect API](http://www.ecma-international.org/ecma-262/6.0/#sec-reflection).
-> You can use:
 >
-> - [reflect-metadata](https://www.npmjs.com/package/reflect-metadata)
-> - [core-js (`core-js/es7/reflect`)](https://www.npmjs.com/package/core-js)
+> We highly recommend tiny [reflection](https://www.npmjs.com/package/@abraham/reflection) polyfill ( 3kB only ! )
 >
 > Also for TypeScript you will need to enable `experimentalDecorators` and `emitDecoratorMetadata` flags within your `tsconfig.json`
 
@@ -37,7 +35,10 @@ yarn add core-js
 
 ```ts
 import { Injectable, ReflectiveInjector } from 'injection-js'
-import { HttpClientModule, HttpClient } from '@martin_hotell/axios-http'
+import {
+  registerHttpClientProviders,
+  HttpClient,
+} from '@martin_hotell/axios-http'
 
 @Injectable()
 class UserService {
@@ -49,7 +50,7 @@ class UserService {
 }
 
 const injector = ReflectiveInjector.resolveAndCreate([
-  HttpClientModule.forRoot(),
+  registerHttpClientProviders(),
   UserService,
 ])
 ```

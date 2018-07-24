@@ -8,11 +8,12 @@
     "email": "hochelmartin@gmail.com"
   },
   "scripts": {
-    "start": "parcel index.html --open",
+    "start": "parcel index.html --no-cache",
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "@martin_hotell/axios-http": "0.2.0",
+    "@abraham/reflection": "0.3.0",
+    "@martin_hotell/axios-http": "0.3.0",
     "axios": "0.18.0",
     "core-js": "2.5.7",
     "injection-js": "2.2.1",
