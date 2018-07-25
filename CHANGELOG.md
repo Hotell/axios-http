@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.1"></a>
+
+## [0.3.1](https://www.github.com/Hotell/axios-http/compare/v0.3.0...v0.3.1) (2018-07-25)
+
+### Bug Fixes
+
+- **build:** add injection-js to peer deps nad don't bundle peer deps ([25e20c5](https://www.github.com/Hotell/axios-http/commit/25e20c5))
+- **types:** don't use [@internal](https://github.com/internal) to get correct typings for consumers ([8217510](https://www.github.com/Hotell/axios-http/commit/8217510))
+
 <a name="0.3.0"></a>
 
 # [0.3.0](https://www.github.com/Hotell/axios-http/compare/v0.2.0...v0.3.0) (2018-07-23)
