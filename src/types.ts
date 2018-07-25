@@ -7,8 +7,8 @@ import {
 } from 'axios'
 
 /**
- * AxiosInstance interface withouht callable definitions
- * @internal
+ * AxiosInstance interface without callable definitions
+ * @private
  */
 export type AxiosClient = Pick<AxiosInstance, keyof AxiosInstance>
 
@@ -25,7 +25,7 @@ export interface HttpRequest<T = any> extends AxiosRequestConfig {
 export interface HttpResponse<T = any> extends AxiosResponse<T> {}
 
 /**
- * @internal
+ * @private
  */
 // tslint:disable-next-line:class-name
 export interface _AxiosInterceptorManager<T = any>
