@@ -10,6 +10,7 @@ import {
   HttpInterceptorHandler,
   NoopInterceptor,
 } from '../interceptor'
+import { registerHttpClientProviders } from '../module'
 import { _AxiosInterceptors, HttpRequest, HttpResponse } from '../types'
 
 describe(`HttpClient`, () => {
@@ -85,9 +86,7 @@ describe(`HttpClient`, () => {
 
     it(`should support interceptors via mutli:true`, () => {
       const injector = ReflectiveInjector.resolveAndCreate([
-        HttpClient,
-        HttpInterceptorHandler,
-        { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true },
+        registerHttpClientProviders(),
         { provide: HTTP_INTERCEPTORS, useClass: TestInterceptor, multi: true },
       ])
 

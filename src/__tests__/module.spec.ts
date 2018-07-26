@@ -24,4 +24,17 @@ describe(`HttpClientModule`, () => {
 
     expect(httpClient).toBeInstanceOf(HttpClient)
   })
+
+  it(`should support configuration on register`, () => {
+    const providers = registerHttpClientProviders({
+      baseURL: 'https://api.githup.com',
+    })
+
+    const injector = ReflectiveInjector.resolveAndCreate(providers)
+
+    const httpClient: HttpClient = injector.get(HttpClient)
+
+    expect(httpClient).toBeInstanceOf(HttpClient)
+    expect(httpClient.defaults.baseURL).toBe('https://api.githup.com')
+  })
 })
