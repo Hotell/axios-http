@@ -109,7 +109,11 @@ type Props = { users: User[] }
 const UserList: SFC<Props> = ({ users }) => {
   return (
     <div>
-      <ul>{users.map((user) => <li key={user.id}>{user.name}</li>)}</ul>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
     </div>
   )
 }
